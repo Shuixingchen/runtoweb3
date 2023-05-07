@@ -19,14 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
                 <i class="fa fa-bars"></i>
             </a>
         </li>
+        <!-- web3工具 -->
         <li>
-          <div id="he-plugin-simple"></div>
-          <a href="https://github.com/owen0o0/WebStack" target="_blank"> Web3工具</a>
+          <a href="https://chaintool.tech/" target="_blank">web3工具</a>
         </li>
-        <li>
-          <div id="he-plugin-simple"></div>
-          <a href="https://github.com/owen0o0/WebStack" target="_blank"> Web3工具</a>
-        </li>
+        <!-- web3工具 end -->
       </ul>
       <ul class="user-info-menu list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
@@ -35,3 +32,4 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
       </ul>
     </div>
 </nav>
+
