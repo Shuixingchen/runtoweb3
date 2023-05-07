@@ -57,7 +57,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
                     else
                         $url = $link_url;
                 }
-            } 
+            }
+            $descr = get_post_meta($post->ID, '_sites_sescribe', true);
+            if ($descr != "") {
+                $title = $descr;
+            } elseif($post->post_content != "") {
+                $title = $post->post_content;
+            }
 
             ?>
             <a href="<?php echo $url ?>" target="<?php echo $blank ?>" class="xe-widget xe-conversations box2 label-info" <?php echo $tooltip . ' ' . $is_html ?> title="<?php echo $title ?>">
