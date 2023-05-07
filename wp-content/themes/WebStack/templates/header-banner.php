@@ -21,12 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
         </li>
         <li>
           <div id="he-plugin-simple"></div>
-          <a href="https://github.com/owen0o0/WebStack" target="_blank"> Web3工具</a>
+          <a href="https://chaintool.tech/" target="_blank"> Web3工具</a>
         </li>
-        <li>
-          <div id="he-plugin-simple"></div>
-          <a href="https://github.com/owen0o0/WebStack" target="_blank"> Web3工具</a>
-        </li>
+
       </ul>
       <ul class="user-info-menu list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
