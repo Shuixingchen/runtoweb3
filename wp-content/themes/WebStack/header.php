@@ -32,6 +32,15 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 <link rel="shortcut icon" href="<?php echo io_get_option('favicon') ?>">
 <link rel="apple-touch-icon" href="<?php echo io_get_option('apple_icon') ?>">
 <?php wp_head(); ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B4ZBJG4VYE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B4ZBJG4VYE');
+</script>
 </head> 
  <body class="page-body <?php echo io_get_option('theme_mode')?>">
     <div class="page-container">
