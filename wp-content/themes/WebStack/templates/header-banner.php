@@ -27,7 +27,15 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
       </ul>
       <ul class="user-info-menu list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
-            <a href="https://github.com/owen0o0/WebStack" target="_blank"><i class="fa fa-github"></i> GitHub</a>
+        <?php
+          if ( is_user_logged_in() ) {
+              $current_user = wp_get_current_user();
+              $user_profile_url = get_edit_profile_url();  // 获取用户信息页面链接
+              echo '<a href="'.esc_url($user_profile_url ).'"> welcome! '.esc_html( $current_user->display_name ).'  </a>';
+          } else {
+              echo '<a href="' . esc_url( wp_login_url() ) . '" target="_blank"><i class="fa fa-user"></i></a>';
+          }
+        ?>
         </li>
       </ul>
     </div>
