@@ -14,3 +14,33 @@ add_action( 'wp_enqueue_scripts', 'fanly_remove_block_library_css', 100 );
 function fanly_remove_block_library_css() {
 	wp_dequeue_style( 'wp-block-library' );
 }
+function custom_email_subject( $subject, $user_login, $user_email, $key, $user_data ) {
+    return 'runtoweb3注册邮件激活';
+}
+add_filter( 'retrieve_password_title', 'custom_email_subject', 10, 5 );
+
+function custom_email_message( $message, $key, $user_login, $user_email, $user_data ) {
+    $message = __( '你好，' ) . "\r\n\r\n";
+    $message .= __( '感谢您注册！请单击以下链接激活您的帐户：' ) . "\r\n\r\n";
+    $message .= network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' );
+    $message .= __( '如果以上链接无法正常工作，请复制到浏览器地址栏中打开。' ) . "\r\n";
+
+    return $message;
+}
+add_filter( 'retrieve_password_message', 'custom_email_message', 10, 5 );
+function wpc_login_redirect_to_homepage( $redirect_to, $request, $user ) {
+    // 检查用户对象是否为WP_Error实例
+    if ( is_wp_error( $user ) ) {
+        return $redirect_to;
+    }
+    
+    // 如果是管理员、编辑、作者 或 供稿人，则正常跳转
+    if ( in_array( 'administrator', (array) $user->roles ) || in_array( 'editor', (array) $user->roles ) || in_array( 'author', (array) $user->roles ) || in_array( 'contributor', (array) $user->roles ) ) {
+        return $redirect_to;
+    }
+
+    // 否则，跳转至首页
+    return home_url();
+}
+add_filter( 'login_redirect', 'wpc_login_redirect_to_homepage', 10, 3 );
+
