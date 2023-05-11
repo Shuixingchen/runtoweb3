@@ -81,6 +81,10 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
                         </div>
                         <p class="overflowClip_1"><?php echo get_post_meta($post->ID, '_sites_sescribe', true) ?: preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",get_the_excerpt($post->ID)); ?></p>
                     </div>
+                    <div class="favorite-btn" data-post-id="<?php echo $post->ID; ?>">
+                        <i class="fa fa-heart-o favorite-icon" aria-hidden="true"></i>
+                        <i class="fa fa-heart favorite-icon" aria-hidden="true"></i>
+                    </div>
                 </div>
             </a>
             
