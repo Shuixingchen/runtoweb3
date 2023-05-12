@@ -339,15 +339,7 @@ input[type="button"],input[type="submit"]{background-color:#222;border:0;-webkit
     cursor: pointer;
     z-index: 10;
 }
-.favorite-icon.fa-heart {
-    display: none;
-  }
-  .favorite-btn:hover .fa-heart-o {
-    display: none;
-  }
-  .favorite-btn:hover .fa-heart {
-    display: inline-block;
-  } 
+
 .favorite-icon {
     font-size: 18px;
     color: #ff7675;

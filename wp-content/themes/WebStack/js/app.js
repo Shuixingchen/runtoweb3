@@ -766,3 +766,51 @@ function attrDefault($el, data_var, default_val)
 	}
 	return default_val;
 }
+
+// 收藏
+(function($) {
+	var hasClicked = false
+	// 鼠标移入事件
+    $('.favorite-btn').on('mouseenter', function () {
+        var heartIcon = $(this).find('.favorite-icon');
+        heartIcon.toggleClass('hidden');
+        if (heartIcon.hasClass('fa-heart-to')) {
+            $(this).attr('title', '取消收藏');
+        } else {
+            $(this).attr('title', '添加收藏');
+        }
+    });
+    // 鼠标移出事件
+    $('.favorite-btn').on('mouseleave', function () {
+		if ($(this).data('clicked')) {
+			return
+		}
+        var heartIcon = $(this).find('.favorite-icon');
+        heartIcon.toggleClass('hidden');
+    });
+
+    $('.favorite-btn').on('click', function(e){
+        e.preventDefault();
+        var post_id = $(this).data('post-id');
+        var btn = $(this);
+		btn.data('clicked',true);
+        $.ajax({
+            type: 'POST',
+            url: theme.ajaxurl,
+            data: {
+                action: 'handle_favorite',
+                post_id: post_id,
+            },
+            success: function(response) {
+                if(response.success) {
+                    var heartIcon = $(this).find('.favorite-icon');
+			        heartIcon.toggleClass('hidden');
+                } else {
+                    // 处理错误信息
+					alert('错误： ' + response.data);
+                }
+            }
+        });
+    });
+})(jQuery);
+
