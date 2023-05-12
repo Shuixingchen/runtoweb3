@@ -44,3 +44,31 @@ function wpc_login_redirect_to_homepage( $redirect_to, $request, $user ) {
 }
 add_filter( 'login_redirect', 'wpc_login_redirect_to_homepage', 10, 3 );
 
+// 收藏功能
+add_action('wp_ajax_handle_favorite', 'handle_favorite');
+add_action('wp_ajax_nopriv_handle_favorite', 'handle_favorite');
+
+function handle_favorite() {
+    if (is_user_logged_in()) {
+        $post_id = $_POST['post_id'];
+        $user_id = get_current_user_id();
+        $favorites = get_user_meta($user_id, 'user_post_favorites', true);
+        if (!$favorites) {
+            $favorites = [];
+        }
+
+        if (in_array($post_id, $favorites)) {
+            // 移除收藏
+            $index = array_search($post_id, $favorites);
+            unset($favorites[$index]);
+        } else {
+            // 添加收藏
+            $favorites[] = $post_id;
+        }
+
+        update_user_meta($user_id, 'user_post_favorites', $favorites);
+        wp_send_json_success('操作成功');
+    } else {
+        wp_send_json_error('请登陆后操作');
+    }
+}

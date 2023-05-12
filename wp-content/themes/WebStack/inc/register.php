@@ -50,4 +50,3 @@ function theme_load_scripts() {
 	)); 
 }
 add_action('wp_enqueue_scripts', 'theme_load_scripts');
- 

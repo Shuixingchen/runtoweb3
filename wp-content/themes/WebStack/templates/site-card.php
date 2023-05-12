@@ -64,7 +64,10 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
             } elseif($post->post_content != "") {
                 $title = $post->post_content;
             }
-
+            // 收藏功能
+            $user_id = get_current_user_id();
+            $favorites = get_user_meta($user_id, 'user_post_favorites', true);
+            $is_favorite = !empty($favorites) && in_array($post->ID, $favorites);
             ?>
             <a href="<?php echo $url ?>" target="<?php echo $blank ?>" class="xe-widget xe-conversations box2 label-info" <?php echo $tooltip . ' ' . $is_html ?> title="<?php echo $title ?>">
                 <div class="xe-comment-entry">
@@ -80,6 +83,10 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
                             <strong><?php the_title() ?></strong>
                         </div>
                         <p class="overflowClip_1"><?php echo get_post_meta($post->ID, '_sites_sescribe', true) ?: preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",get_the_excerpt($post->ID)); ?></p>
+                    </div>
+                    <div class="favorite-btn" data-post-id="<?php echo $post->ID; ?>">
+                        <i class="fa fa-heart-o favorite-icon <?php echo $is_favorite ? 'hidden': '' ?> "></i>
+                        <i class="fa fa-heart favorite-icon <?php echo $is_favorite ? '': 'hidden' ?>"></i>
                     </div>
                 </div>
             </a>
