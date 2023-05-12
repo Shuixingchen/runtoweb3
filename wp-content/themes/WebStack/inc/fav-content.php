@@ -60,3 +60,36 @@ function fav_con($mid) { ?>
         </div>   
         <br /> 
 <?php } ?>
+
+<?php
+function fav_favorite_con($user_id){
+      $favorfavorite_post_id = get_user_meta($user_id, 'user_post_favorites', true);
+      $site_n           = io_get_option('site_n');
+      global $post;
+      $args = array(
+        'post_type'           => 'sites',        //自定义文章类型，这里为sites
+        'post__in' => $favorfavorite_post_id, // 使用 post__in 参数查询收藏的 post 列表
+        'posts_per_page'      => $site_n,        //显示的文章数量
+        'meta_key'            => '_sites_order',
+        'orderby'             => array( 'meta_value_num' => 'DESC', 'ID' => 'DESC' ),
+        
+      );
+      $myposts = new WP_Query( $args );
+  ?>
+      <h4 class="text-gray" style="display: inline-block;"><i class="icon-io-tag" style="margin-right: 27px;"></i>我的收藏</h4>
+      <div class="row">
+      <?php
+          if ($myposts->have_posts()): while ($myposts->have_posts()): $myposts->the_post(); 
+            $link_url = get_post_meta($post->ID, '_sites_link', true); 
+            $default_ico = get_theme_file_uri('/images/favicon.png');
+            if(current_user_can('level_10') || get_post_meta($post->ID, '_visible', true)==""):
+          ?>
+            <div class="xe-card <?php echo io_get_option('columns') ?> <?php echo get_post_meta($post->ID, '_wechat_qr', true)? 'wechat':''?>">
+              <?php include( get_theme_file_path() .'/templates/site-card.php' ); ?>
+            </div>
+          <?php endif; endwhile; endif; wp_reset_postdata(); ?>
+      </div>
+      <br /> 
+<?php
+}
+?>

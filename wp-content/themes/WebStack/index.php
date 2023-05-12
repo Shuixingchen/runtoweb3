@@ -31,6 +31,10 @@ else{?>
 <?php if(!wp_is_mobile() && io_get_option('ad_home_s')) echo '<div class="row"><div class="ad ad-home col-md-6">' . stripslashes( io_get_option('ad_home') ) . '</div><div class="ad ad-home col-md-6 visible-md-block visible-lg-block">' . stripslashes( io_get_option('ad_home') ) . '</div></div>'; ?>        
 
 <?php
+if (is_user_logged_in()) {
+  $user_id = get_current_user_id();
+  fav_favorite_con($user_id);
+}
 foreach($categories as $category) {
   if($category->category_parent == 0){
     $children = get_categories(array(
