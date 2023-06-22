@@ -23,7 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }  ?>
           <div id="he-plugin-simple"></div>
           <a href="https://chaintool.tech/" target="_blank"> Web3工具</a>
         </li>
-
+        <li>
+          <div id="he-plugin-simple"></div>
+          <?php $site_url = get_site_url();?>
+          <a href=<?php echo $site_url."/articles";?> target="_blank"> 博客文章</a>
+        </li>
       </ul>
       <ul class="user-info-menu list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
