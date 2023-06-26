@@ -8,6 +8,11 @@
  *
  */
 abstract class CSFramework_Options extends CSFramework_Abstract {
+  public $field;
+  public $value;
+  public $org_value;
+  public $unique;
+  public $multilang;
 
   public function __construct( $field = array(), $value = '', $unique = '' ) {
     $this->field      = $field;
