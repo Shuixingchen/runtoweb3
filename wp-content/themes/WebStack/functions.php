@@ -72,3 +72,10 @@ function handle_favorite() {
         wp_send_json_error('请登陆后操作');
     }
 }
+
+// 使用Tailwind
+function theme_enqueue_styles() {
+    wp_enqueue_style('main-css', get_template_directory_uri() . '/output.css');
+}
+
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
