@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }?>
                     <!---请保留版权说明，谢谢---->
                     <div class="footer-text">
                         Copyright © <?php echo date('Y') ?> <?php bloginfo('name'); ?> <?php if(io_get_option('icp')) echo '<a href="https://beian.miit.gov.cn/" target="_blank" rel="link noopener">' . io_get_option('icp') . '</a>'?>
-                        &nbsp;&nbsp;Design by <a href="http://webstack.cc" target="_blank"><strong>Webstack</strong></a>&nbsp;&nbsp;Modify by <a href="https://www.iotheme.cn" target="_blank"><strong>一为</strong></a>
+                        &nbsp;&nbsp; Contract Me at <a href="mailto:120781991csx1@gmail.com">120781991csx1@gmail.com</a>
                     </div>
                     <!---请保留版权说明，谢谢---->
                 </div>
